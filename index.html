@@ -2,7 +2,10 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#050505">
     <title>周子月 | 个人空间</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,6 +34,9 @@
             color: var(--text);
             overflow-x: hidden;
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
         }
 
         /* 1. 蝴蝶视频特效层 */
@@ -657,18 +663,196 @@
         .account-name { font-size: 1.4rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 8px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         .account-tag { font-size: 0.9rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; }
 
+        /* === 移动端响应式优化 === */
+        @media (max-width: 1024px) {
+            .page-wrapper { padding: 120px 15px 0; gap: 40px; }
+            .content-blocks-container { padding: 0 15px; }
+            .new-header-block { padding: 35px 25px; border-radius: 25px; }
+            .header-main-content { flex-direction: column-reverse; text-align: center; gap: 25px; }
+            .display-name { font-size: 3.5rem; letter-spacing: -1px; }
+            .display-motto { font-size: 1.6rem; }
+            .header-intro-text { font-size: 1rem; text-align: center; }
+            .avatar-wrap { width: 180px; height: 180px; }
+            .avatar-circle { border-width: 4px; }
+            
+            .hooks-container { max-width: 100%; gap: 10px; flex-wrap: wrap; padding: 0 10px; }
+            .icon-pendant { width: 75px; height: 75px; border-radius: 18px; }
+            .icon-pendant i { font-size: 2rem; }
+            .icon-pendant span { font-size: 0.75rem; }
+            .spring-wire { width: 30px; height: 80px; }
+            
+            .edu-main-title { font-size: 2.5rem; }
+            .edu-card-container { padding: 15px 20px; }
+            .edu-info-row { flex-direction: column; align-items: flex-start; padding: 20px 0; gap: 8px; }
+            .edu-info-value { font-size: 1.4rem; text-align: left; }
+            
+            .project-results-grid h2 { font-size: 2.5rem !important; }
+            .project-item { padding: 20px; }
+            .project-main-name { font-size: 1.2rem; }
+            .project-sub-desc { font-size: 0.85rem; }
+            .project-popup-wrapper { display: none; }
+            
+            .poker-wrapper { height: 400px; margin-top: 60px; }
+            .poker-container { width: 240px; height: 320px; left: -120px; }
+            .poker-card { width: 240px; height: 320px; border-radius: 16px; }
+            
+            .resume-btn-container { width: 180px; height: 180px; }
+            .resume-push-btn { width: 140px; height: 140px; }
+            
+            .identity-card { width: 260px; height: 380px; padding: 30px 20px; margin-right: 40px; }
+            .card-icon { font-size: 2.8rem; }
+            .card-title { font-size: 1.5rem; }
+        }
+        
         @media (max-width: 768px) {
-            .glitch-title { font-size: 3.2rem; letter-spacing: 4px; }
-            .cinema-header-text { font-size: 0.7rem; letter-spacing: 5px; }
-            .cinema-projector-visual { width: 320px; }
-            .cinema-enter-btn { width: 110px; height: 110px; bottom: 5%; }
-            .account-card-grid { grid-template-columns: 1fr; gap: 30px; }
-            .account-card { padding: 25px; }
-            .project-item { padding: 25px; flex-direction: column; align-items: flex-start; gap: 15px; }
-            .project-date { text-align: left; margin-left: 70px; }
-            .project-main-name { font-size: 1.4rem; }
+            .nav-logo { font-size: 1rem; }
+            .new-header-block { padding: 30px 20px; }
+            .status-tags { flex-wrap: wrap; gap: 8px; justify-content: center; }
+            .tag-item { font-size: 0.7rem; padding: 5px 10px; }
+            .display-name { font-size: 2.8rem; }
+            .display-motto { font-size: 1.3rem; }
+            .avatar-wrap { width: 150px; height: 150px; }
+            .header-intro-text { font-size: 0.95rem; line-height: 1.7; }
+            
+            .hooks-container { justify-content: center; }
+            .icon-pendant { width: 65px; height: 65px; border-radius: 15px; }
+            .icon-pendant i { font-size: 1.7rem; }
+            .icon-pendant span { font-size: 0.7rem; }
+            
+            .edu-main-title { font-size: 2rem; }
+            .edu-info-value { font-size: 1.2rem; }
+            
+            .project-item { padding: 20px 15px; flex-direction: column; align-items: flex-start; gap: 12px; }
+            .project-item-content { gap: 20px; }
+            .project-num { font-size: 1.8rem; }
+            .project-date { text-align: left; margin-left: 0; font-size: 0.85rem; }
+            .project-main-name { font-size: 1.1rem; letter-spacing: 1px; }
+            .project-sub-desc { font-size: 0.8rem; }
+            
+            .section-block { padding: 40px 20px; border-radius: 20px; }
+            .section-block h2 { font-size: 1.5rem; }
+            
+            .poker-wrapper { height: 350px; }
+            .poker-container { width: 200px; height: 280px; left: -100px; }
+            .poker-card { width: 200px; height: 280px; }
+            .photo-quote { font-size: 1.2rem; }
+            .photo-instruction { font-size: 0.85rem; }
+            
+            .resume-section { gap: 20px; }
+            .resume-btn-container { width: 160px; height: 160px; }
+            .resume-push-btn { width: 120px; height: 120px; }
+            .resume-push-btn span { font-size: 1.2rem; }
+            
+            .identity-card { width: 240px; height: 340px; padding: 25px 18px; margin-right: 30px; }
+            .card-icon { font-size: 2.5rem; }
+            .card-title { font-size: 1.3rem; }
+            .card-action-text { font-size: 0.9rem; }
+            
+            .glitch-title { font-size: 2.5rem; letter-spacing: 3px; }
+            .cinema-header-text { font-size: 0.65rem; letter-spacing: 4px; }
+            .cinema-projector-visual { width: 280px; }
+            .cinema-enter-btn { width: 100px; height: 100px; bottom: 8%; }
+            .cinema-enter-btn span { font-size: 0.7rem; }
+            .cinema-enter-btn i { font-size: 1.2rem; }
+            .account-card-grid { grid-template-columns: 1fr; gap: 25px; }
+            .account-card { padding: 25px 20px; border-radius: 25px; }
+            .account-name { font-size: 1.2rem; }
+            .account-tag { font-size: 0.8rem; }
+            
+            .premium-text { font-size: 1.1rem; line-height: 1.6; }
+            
+            .ai-card { flex-direction: column; gap: 15px; }
+            .ai-photo { width: 100%; max-width: 280px; height: auto; }
+            .ai-title { font-size: 2rem; }
+            .ai-name { font-size: 1.1rem; }
+            .ai-desc { font-size: 0.9rem; }
+            
+            .brand-card { flex-direction: column; gap: 15px; }
+            .brand-title { font-size: 2rem; }
+            .brand-name { font-size: 1.2rem; }
+            .brand-desc { font-size: 0.9rem; line-height: 1.7; }
+            
+            .achievement-card { flex-direction: column; gap: 15px; }
+            .ach-icon { width: 60px; height: 60px; }
+            .ach-info h4 { font-size: 1.1rem; }
+            .ach-info p { font-size: 0.9rem; }
+            .algo-title { font-size: 2.2rem; }
+            .photo-grid { grid-template-columns: 1fr; }
+            
+            .content-modal-box { padding: 40px 25px; margin: 20px auto; width: 92%; border-radius: 25px; }
+            .letter-content { width: 88%; padding: 40px 25px; }
+            .qr-content { width: 85%; padding: 30px 20px; }
+            .close-btn { top: 20px; right: 20px; font-size: 28px; }
+            
+            .project-modal-content { width: 92%; margin: 20px; border-radius: 15px; }
+            .project-modal-body { padding: 30px 20px; }
+            .project-modal-body img, .project-modal-body video { max-width: 100%; }
+            .project-modal-body p { font-size: 1rem; }
+            
+            .footer-plane { margin: 60px 0; }
+            .plane-icon { font-size: 3rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-logo { font-size: 0.9rem; }
+            .new-header-block { padding: 25px 18px; border-radius: 20px; }
+            .display-name { font-size: 2.2rem; }
+            .display-motto { font-size: 1.1rem; }
+            .avatar-wrap { width: 130px; height: 130px; }
+            .avatar-accent-dot { width: 26px; height: 26px; left: -8px; }
+            .header-intro-text { font-size: 0.9rem; }
+            
+            .icon-pendant { width: 58px; height: 58px; border-radius: 14px; }
+            .icon-pendant i { font-size: 1.5rem; }
+            .icon-pendant span { font-size: 0.65rem; }
+            .spring-wire { width: 25px; height: 70px; }
+            
+            .edu-main-title { font-size: 1.8rem; }
+            .edu-header-tag { font-size: 0.8rem; }
+            .edu-header-subtitle { font-size: 0.7rem; }
+            .edu-info-label { font-size: 0.9rem; }
+            .edu-info-value { font-size: 1.1rem; }
+            
+            .project-results-grid h2 { font-size: 2rem !important; }
+            .project-num { font-size: 1.5rem; }
+            .project-main-name { font-size: 1rem; }
+            
+            .poker-wrapper { height: 300px; margin-top: 40px; }
+            .poker-container { width: 180px; height: 250px; left: -90px; }
+            .poker-card { width: 180px; height: 250px; }
+            
+            .identity-card { width: 220px; height: 320px; padding: 22px 15px; margin-right: 25px; }
+            
+            .glitch-title { font-size: 2rem; letter-spacing: 2px; }
+            .premium-text { font-size: 1rem; }
+            .platform-link-btn { padding: 10px 22px; font-size: 0.85rem; }
         }
 
+        /* === 懒加载样式 === */
+        img[data-src] {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L25 20l-5 4.5V20h20v2H25v2.5L20 20z'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 40px 40px;
+            min-height: 50px;
+            opacity: 0.3;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        img.lazy-loaded {
+            opacity: 1;
+            background: none;
+        }
+        
+        /* 加载动画 */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        img[data-src]:not(.lazy-loaded) {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
         /* === 滑动阻尼效果 - 使用CSS原生实现 === */
         html {
             scroll-behavior: smooth;
@@ -732,7 +916,7 @@
                 </div>
                 <div class="avatar-wrap">
                     <div class="avatar-accent-dot"></div>
-                    <img src="大头照.jpg" alt="周子月" class="avatar-circle">
+                    <img data-src="大头照.jpg" alt="周子月" class="avatar-circle">
                 </div>
             </div>
             <p class="header-intro-text">
@@ -897,11 +1081,11 @@
             
             <div class="poker-wrapper">
                 <div class="poker-container" id="pokerContainer">
-                    <div class="poker-card poker1"><img src="photo1.jpg" loading="lazy"></div>
-                    <div class="poker-card poker2"><img src="photo2.jpg" loading="lazy"></div>
-                    <div class="poker-card poker3"><img src="photo3.jpg" loading="lazy"></div>
-                    <div class="poker-card poker4"><img src="photo4.jpg" loading="lazy"></div>
-                    <div class="poker-card poker5"><img src="photo5.jpg" loading="lazy"></div>
+                    <div class="poker-card poker1"><img data-src="photo1.jpg" alt="摄影作品"></div>
+                    <div class="poker-card poker2"><img data-src="photo2.jpg" alt="摄影作品"></div>
+                    <div class="poker-card poker3"><img data-src="photo3.jpg" alt="摄影作品"></div>
+                    <div class="poker-card poker4"><img data-src="photo4.jpg" alt="摄影作品"></div>
+                    <div class="poker-card poker5"><img data-src="photo5.jpg" alt="摄影作品"></div>
                     <div class="poker-trigger" id="pokerTrigger"></div>
                 </div>
             </div>
@@ -931,8 +1115,8 @@
     <!-- 弹窗组 -->
     <div id="phoneModal" class="modal"><div class="letter-content"><span class="close-btn" onclick="closeModal('phoneModal')">&times;</span><h2>联系电话</h2><p style="font-size:2.2rem; margin-top:25px; font-weight:900;">130 2728 0992</p><p style="margin-top:30px; text-align:right;">—— 周子月</p></div></div>
     <div id="emailModal" class="modal"><div class="letter-content"><span class="close-btn" onclick="closeModal('emailModal')">&times;</span><h2>电子邮箱</h2><p style="font-size:1.6rem; margin-top:25px; font-weight:900;">zhouziyue12@qq.com</p><p style="margin-top:30px; text-align:right;">期待您的合作</p></div></div>
-    <div id="wechatModal" class="modal"><div class="qr-content"><span class="close-btn" onclick="closeModal('wechatModal')">&times;</span><h3 style="color:#fff;">我的微信</h3><img src="vx.png" alt="微信二维码" class="modal-image" onerror="this.src='vx.jpg'" loading="lazy"><p style="color:var(--text-dim);">扫一扫添加好友</p></div></div>
-    <div id="qqModal" class="modal"><div class="qr-content"><span class="close-btn" onclick="closeModal('qqModal')">&times;</span><h3 style="color:#fff;">我的 QQ</h3><img src="QQ.jpg" alt="QQ二维码" class="modal-image" loading="lazy"><p style="color:var(--text-dim);">扫一扫添加好友</p></div></div>
+    <div id="wechatModal" class="modal"><div class="qr-content"><span class="close-btn" onclick="closeModal('wechatModal')">&times;</span><h3 style="color:#fff;">我的微信</h3><img data-src="vx.png" alt="微信二维码" class="modal-image" onerror="this.src='vx.jpg'"><p style="color:var(--text-dim);">扫一扫添加好友</p></div></div>
+    <div id="qqModal" class="modal"><div class="qr-content"><span class="close-btn" onclick="closeModal('qqModal')">&times;</span><h3 style="color:#fff;">我的 QQ</h3><img data-src="QQ.jpg" alt="QQ二维码" class="modal-image"><p style="color:var(--text-dim);">扫一扫添加好友</p></div></div>
 
     <!-- 身份详情模态框：自媒体创作者 (内容更新版) -->
     <div id="creatorContentModal" class="modal">
@@ -969,13 +1153,13 @@
                 </div>
                 <div class="account-card-grid" id="creatorSkills">
                     <div class="account-card">
-                        <div class="qr-placeholder"><img src="vedio1.jpg" alt="抖音二维码" loading="lazy"></div>
+                        <div class="qr-placeholder"><img data-src="vedio1.jpg" alt="抖音二维码"></div>
                         <h4 class="account-name" style="color: #fff;">抖音 / Douyin</h4>
                         <p class="account-tag" style="color: #ff0050;">短视频创作 // 动态记录</p>
                         <a href="https://v.douyin.com/NvV_qr2kQ30/ 4@3.com :7pm" target="_blank" class="platform-link-btn"><i class="fas fa-play"></i><span>访问主页</span></a>
                     </div>
                     <div class="account-card">
-                        <div class="qr-placeholder"><img src="vedio2.jpg" alt="小红书二维码" loading="lazy"></div>
+                        <div class="qr-placeholder"><img data-src="vedio2.jpg" alt="小红书二维码"></div>
                         <h4 class="account-name" style="color: #fff;">小红书 / Red</h4>
                         <p class="account-tag" style="color: #ff2442;">生活方式 // 干货分享</p>
                         <a href="https://xhslink.com/m/OCdxcQWjeQ" target="_blank" class="platform-link-btn"><i class="fas fa-play"></i><span>访问主页</span></a>
@@ -993,21 +1177,21 @@
             <p class="ai-subtitle">PROJECT_LIBRARY // 构建智能化的未来</p>
             <div class="ai-grid">
                 <div class="ai-card">
-                    <div class="ai-image-wrapper"><img src="AI1.png" alt="AI证书1" loading="lazy" class="ai-photo"></div>
+                    <div class="ai-image-wrapper"><img data-src="AI1.png" alt="AI证书1" class="ai-photo"></div>
                     <div class="ai-info">
                         <h3 class="ai-name">智能体工程师</h3>
                         <p class="ai-desc">掌握智能体设计与开发，具备构建AI驱动应用的能力</p>
                     </div>
                 </div>
                 <div class="ai-card">
-                    <div class="ai-image-wrapper"><img src="AI2.png" alt="AI证书2" loading="lazy" class="ai-photo"></div>
+                    <div class="ai-image-wrapper"><img data-src="AI2.png" alt="AI证书2" class="ai-photo"></div>
                     <div class="ai-info">
                         <h3 class="ai-name">人工智能训练师（初级）</h3>
                         <p class="ai-desc">掌握AI模型训练基础，具备数据标注、模型微调能力</p>
                     </div>
                 </div>
                 <div class="ai-card">
-                    <div class="ai-image-wrapper"><img src="AI3.png" alt="AI证书3" loading="lazy" class="ai-photo"></div>
+                    <div class="ai-image-wrapper"><img data-src="AI3.png" alt="AI证书3" class="ai-photo"></div>
                     <div class="ai-info">
                         <h3 class="ai-name">人工智能训练师（高级）</h3>
                         <p class="ai-desc">精通AI训练全流程，具备复杂模型优化与部署能力</p>
@@ -1039,8 +1223,8 @@
                         <h4>牛客寒假算法集训营</h4>
                         <p>获奖证书展示</p>
                         <div class="photo-grid">
-                            <img src="prize1.jpg" alt="牛客算法集训营证书1" loading="lazy" class="prize-photo">
-                            <img src="prize2.png" alt="牛客算法集训营证书2" loading="lazy" class="prize-photo">
+                            <img data-src="prize1.jpg" alt="牛客算法集训营证书1" class="prize-photo">
+                            <img data-src="prize2.png" alt="牛客算法集训营证书2" class="prize-photo">
                         </div>
                     </div>
                 </div>
@@ -1060,7 +1244,7 @@
                     <div class="brand-content">
                         <h3 class="brand-name">美团NoCode校园大使</h3>
                         <p class="brand-desc">主攻NoCode低代码AI产品校园生态搭建与破圈传播；自主策划校园推广获客链路，完成用户拉新、产品教学、转化留存全流程闭环运营；任职期间单周精准获客160人，核心用户转化率高达40%，累计沉淀原创优质作品50+份，超额完成官方下达的拉新、转化、内容产出三重考核目标。</p>
-                        <div class="brand-image-wrapper"><img src="nocode.png" alt="美团NoCode" loading="lazy" class="brand-photo"></div>
+                        <div class="brand-image-wrapper"><img data-src="nocode.png" alt="美团NoCode" class="brand-photo"></div>
                     </div>
                 </div>
                 <div class="brand-card">
@@ -1084,6 +1268,105 @@
             }
         }
 
+        /** [新增] 懒加载优化 */
+        class LazyLoader {
+            constructor() {
+                this.images = [];
+                this.videos = [];
+                this.observer = null;
+                this.init();
+            }
+            
+            init() {
+                this.findMediaElements();
+                this.setupObserver();
+            }
+            
+            findMediaElements() {
+                // 找到所有带有data-src的图片
+                this.images = document.querySelectorAll('img[data-src]');
+                // 找到所有带有data-src的视频
+                this.videos = document.querySelectorAll('video[data-src]');
+                
+                console.log(`[LazyLoader] Found ${this.images.length} images and ${this.videos.length} videos to lazy load`);
+            }
+            
+            setupObserver() {
+                const options = {
+                    root: null,
+                    rootMargin: '50px 0px',
+                    threshold: 0.1
+                };
+                
+                this.observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const element = entry.target;
+                            
+                            if (element.tagName === 'IMG') {
+                                this.loadImage(element);
+                            } else if (element.tagName === 'VIDEO') {
+                                this.loadVideo(element);
+                            }
+                            
+                            this.observer.unobserve(element);
+                        }
+                    });
+                }, options);
+                
+                // 观察所有媒体元素
+                this.images.forEach((img) => this.observer.observe(img));
+                this.videos.forEach((video) => this.observer.observe(video));
+            }
+            
+            loadImage(img) {
+                const src = img.getAttribute('data-src');
+                const srcset = img.getAttribute('data-srcset');
+                
+                if (srcset) {
+                    img.srcset = srcset;
+                }
+                
+                img.src = src;
+                
+                img.onload = () => {
+                    img.classList.add('lazy-loaded');
+                    console.log(`[LazyLoader] Loaded image: ${src}`);
+                };
+                
+                img.onerror = () => {
+                    console.error(`[LazyLoader] Failed to load image: ${src}`);
+                };
+            }
+            
+            loadVideo(video) {
+                const src = video.getAttribute('data-src');
+                const source = document.createElement('source');
+                source.src = src;
+                source.type = video.getAttribute('data-type') || 'video/mp4';
+                
+                video.appendChild(source);
+                video.removeAttribute('data-src');
+                video.removeAttribute('data-type');
+                
+                // 只有在需要播放时才加载视频
+                video.load();
+                console.log(`[LazyLoader] Loaded video: ${src}`);
+            }
+            
+            // 手动加载指定元素
+            loadElement(element) {
+                if (element.tagName === 'IMG' && element.dataset.src) {
+                    this.loadImage(element);
+                } else if (element.tagName === 'VIDEO' && element.dataset.src) {
+                    this.loadVideo(element);
+                }
+            }
+        }
+        
+        // 创建懒加载实例
+        let lazyLoader = null;
+        
         /** [新增] 项目成果弹出图跟随逻辑 */
         const projectPopup = document.getElementById('projectPopup');
         function updatePopup(e, imgSrc) {
@@ -1104,17 +1387,30 @@
             
             if (projectId === 'project1') {
                 body.innerHTML = `
-                    <img src="item1.png" alt="AI Intelligent Pharmacist">
+                    <img data-src="item1.png" alt="AI Intelligent Pharmacist" class="modal-content-image">
                     <p>还在完善阶段，敬请等待产品上架。</p>
                 `;
+                // 手动触发懒加载
+                setTimeout(() => {
+                    const img = body.querySelector('img');
+                    if (img && lazyLoader) {
+                        lazyLoader.loadElement(img);
+                    }
+                }, 100);
             } else if (projectId === 'project3') {
                 body.innerHTML = `
-                    <video controls>
-                        <source src="air.mp4" type="video/mp4">
+                    <video controls data-src="air.mp4" data-type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <p>还在完善阶段，暂未部署。</p>
                 `;
+                // 手动触发懒加载
+                setTimeout(() => {
+                    const video = body.querySelector('video');
+                    if (video && lazyLoader) {
+                        lazyLoader.loadElement(video);
+                    }
+                }, 100);
             }
             
             modal.style.display = 'flex';
@@ -1182,7 +1478,12 @@
                 const container = document.getElementById('pokerContainer');
                 if(!container) return;
                 this.cards = Array.from(container.querySelectorAll('.poker-card'));
-                this.cards.forEach((card, index) => { card.nums = index; card.style.zIndex = index; card.style.transform = this.transformDatas[index]; });
+                // 初始化时只加载第一张图片
+                this.cards.forEach((card, index) => { 
+                    card.nums = index; 
+                    card.style.zIndex = index; 
+                    card.style.transform = this.transformDatas[index]; 
+                });
                 document.getElementById('pokerTrigger').addEventListener('click', () => this.move());
             },
             move() {
@@ -1191,7 +1492,8 @@
                     if (nums + 1 >= this.cards.length) {
                         nums = 0; card.style.transition = "none";
                         const nextImgSrc = `photo${this.imgIndex + 1}.jpg`;
-                        card.querySelector('img').src = nextImgSrc;
+                        const img = card.querySelector('img');
+                        img.src = nextImgSrc;
                         this.imgIndex = (this.imgIndex + 1) % this.totalImages;
                     } else {
                         nums += 1; card.style.transition = "transform 0.3s ease-out";
@@ -1228,13 +1530,65 @@
             const forceTimer = setTimeout(closeIntro, 4500);
             if(video) video.onplaying = () => { clearTimeout(forceTimer); setTimeout(closeIntro, 4000); };
             
+            // 初始化懒加载
+            lazyLoader = new LazyLoader();
+            
             scrollbox.resize();
             poker.init();
             scrollbox.move();
             
             window.addEventListener("resize", () => { scrollbox.resize(); scrollbox.move(); });
             window.addEventListener("scroll", () => { scrollbox.move(); });
+            
+            // 移动端优化：添加触控反馈
+            initMobileTouch();
         });
+        
+        /** 移动端触控优化 */
+        function initMobileTouch() {
+            // 为所有可点击元素添加触控效果
+            const clickableElements = document.querySelectorAll('.icon-pendant, .project-item, .poker-trigger, .resume-push-btn, .footer-plane, .card-action-text, .cinema-enter-btn, .platform-link-btn, .close-btn, .project-modal-close');
+            clickableElements.forEach(el => {
+                el.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+                el.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+            
+            // 移动端隐藏悬停预览框
+            if ('ontouchstart' in window) {
+                const popup = document.getElementById('projectPopup');
+                if (popup) popup.style.display = 'none';
+            }
+            
+            // 优化横向滑动的触控体验
+            let touchStartX = 0;
+            let touchStartY = 0;
+            const horizontalSection = document.getElementById('horizontalScroll');
+            if (horizontalSection) {
+                horizontalSection.addEventListener('touchstart', (e) => {
+                    touchStartX = e.touches[0].clientX;
+                    touchStartY = e.touches[0].clientY;
+                }, { passive: true });
+                
+                horizontalSection.addEventListener('touchmove', (e) => {
+                    const touchX = e.touches[0].clientX;
+                    const touchY = e.touches[0].clientY;
+                    const diffX = touchStartX - touchX;
+                    const diffY = touchStartY - touchY;
+                    
+                    // 如果是横向滑动为主，阻止页面默认滚动
+                    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+                        const rect = horizontalSection.getBoundingClientRect();
+                        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+                            // 不阻止，让 scrollbox.move() 来处理
+                        }
+                    }
+                }, { passive: true });
+            }
+        }
 
         function openModal(id) { 
             const modal = document.getElementById(id);
