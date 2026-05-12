@@ -960,6 +960,117 @@
             opacity: 1;
             transform: translateY(0);
         }
+        
+        /* === 移动端性能优化 === */
+        @media (max-width: 768px) {
+            .particle {
+                width: 2px;
+                height: 2px;
+                animation-duration: 15s;
+            }
+            
+            #galaxy-canvas {
+                display: none;
+            }
+            
+            .poker-card {
+                transition: transform 0.2s ease-out !important;
+                will-change: transform;
+            }
+            
+            .identity-card {
+                transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .butterfly-intro {
+                background: linear-gradient(135deg, #050505 0%, #1a1a2e 50%, #050505 100%);
+            }
+            
+            .butterfly-fallback {
+                display: flex !important;
+            }
+            
+            .butterfly-video {
+                display: none !important;
+            }
+            
+            .icon-pendant {
+                animation: none;
+                transform: none !important;
+            }
+            
+            .project-swipe-bg {
+                display: none;
+            }
+            
+            .project-item:hover,
+            .identity-card:hover,
+            .achievement-card:hover,
+            .ai-card:hover,
+            .brand-card:hover {
+                transform: none;
+            }
+            
+            * {
+                will-change: auto;
+                backface-visibility: visible;
+                transform-style: flat;
+            }
+        }
+        
+        /* 蝴蝶开场替代方案样式 */
+        .butterfly-fallback {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #050505 0%, #1a1a2e 50%, #050505 100%);
+        }
+        
+        .butterfly-icon {
+            width: 120px;
+            height: 120px;
+            animation: butterfly-bounce 2s ease-in-out infinite;
+        }
+        
+        .butterfly-icon svg {
+            width: 100%;
+            height: 100%;
+            animation: butterfly-flutter 1s ease-in-out infinite;
+        }
+        
+        .butterfly-text {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+            color: #00d2ff;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+            animation: text-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes butterfly-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes butterfly-flutter {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(3deg); }
+            75% { transform: scale(0.95) rotate(-3deg); }
+        }
+        
+        @keyframes text-pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; text-shadow: 0 0 30px rgba(0, 210, 255, 0.8); }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -967,9 +1078,27 @@
 
     <!-- 1. 蝴蝶开场特效 -->
     <div class="butterfly-intro" id="butterflyIntro" onclick="closeIntro()">
-        <video class="butterfly-video" id="butterflyVideo" autoplay muted playsinline>
+        <video class="butterfly-video" id="butterflyVideo" autoplay muted playsinline poster="butterfly-poster.jpg">
             <source src="炫彩蝴蝶.mp4" type="video/mp4">
         </video>
+        <!-- 移动端SVG蝴蝶替代方案 -->
+        <div class="butterfly-fallback" id="butterflyFallback">
+            <div class="butterfly-icon">
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 C140 60 180 80 140 100 C160 120 180 140 160 160 C130 140 100 150 100 180" stroke="url(#butterflyGradient)" stroke-width="2" fill="none"/>
+                    <path d="M100 20 C60 60 20 80 60 100 C40 120 20 140 40 160 C70 140 100 150 100 180" stroke="url(#butterflyGradient)" stroke-width="2" fill="none"/>
+                    <path d="M100 60 L100 180" stroke="url(#butterflyGradient)" stroke-width="2"/>
+                    <defs>
+                        <linearGradient id="butterflyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d2ff"/>
+                            <stop offset="50%" style="stop-color:#ff5722"/>
+                            <stop offset="100%" style="stop-color:#00d2ff"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="butterfly-text">周子月 // 个人空间</div>
+        </div>
     </div>
 
     <!-- 2. 全局动态背景 -->
@@ -1373,7 +1502,13 @@
             
             // 立即加载首屏关键图片
             loadCriticalImages() {
-                const criticalImages = document.querySelectorAll('img[data-src].avatar-circle, img[data-src].prize-photo, img[data-src].ai-photo, img[data-src].brand-photo');
+                // 使用更简单的选择器确保能找到头像
+                const avatarImages = document.querySelectorAll('.avatar-circle[data-src]');
+                const otherCriticalImages = document.querySelectorAll('img[data-src].prize-photo, img[data-src].ai-photo, img[data-src].brand-photo');
+                
+                const criticalImages = [...avatarImages, ...otherCriticalImages];
+                
+                console.log(`[LazyLoader] Loading ${criticalImages.length} critical images immediately`);
                 
                 criticalImages.forEach((img) => {
                     this.loadImage(img);
