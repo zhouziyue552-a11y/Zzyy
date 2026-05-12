@@ -896,23 +896,43 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5L25 20l-5 4.5V20h20v2H25v2.5L20 20z'/%3E%3C/g%3E%3C/svg%3E");
             background-size: 40px 40px;
             min-height: 50px;
-            opacity: 0.3;
-            transition: opacity 0.3s ease-in-out;
+            opacity: 0.6;
+            transform: scale(1.02);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out, filter 0.4s ease-out;
+            filter: blur(3px);
         }
         
         img.lazy-loaded {
             opacity: 1;
             background: none;
+            transform: scale(1);
+            filter: blur(0);
         }
         
         /* 加载动画 */
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
+        @keyframes lazy-pulse {
+            0%, 100% { opacity: 0.4; transform: scale(1.02); }
+            50% { opacity: 0.7; transform: scale(1.01); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
         
         img[data-src]:not(.lazy-loaded) {
-            animation: pulse 2s ease-in-out infinite;
+            animation: lazy-pulse 1.5s ease-in-out infinite;
+        }
+        
+        .lazy-shimmer {
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.03) 25%,
+                rgba(255, 255, 255, 0.08) 50%,
+                rgba(255, 255, 255, 0.03) 75%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
         }
         
         /* === 滑动阻尼效果 - 使用CSS原生实现 === */
@@ -1341,23 +1361,30 @@
             
             init() {
                 this.findMediaElements();
+                this.loadCriticalImages();
                 this.setupObserver();
             }
             
             findMediaElements() {
-                // 找到所有带有data-src的图片
                 this.images = document.querySelectorAll('img[data-src]');
-                // 找到所有带有data-src的视频
                 this.videos = document.querySelectorAll('video[data-src]');
-                
                 console.log(`[LazyLoader] Found ${this.images.length} images and ${this.videos.length} videos to lazy load`);
+            }
+            
+            // 立即加载首屏关键图片
+            loadCriticalImages() {
+                const criticalImages = document.querySelectorAll('img[data-src].avatar-circle, img[data-src].prize-photo, img[data-src].ai-photo, img[data-src].brand-photo');
+                
+                criticalImages.forEach((img) => {
+                    this.loadImage(img);
+                });
             }
             
             setupObserver() {
                 const options = {
                     root: null,
-                    rootMargin: '50px 0px',
-                    threshold: 0.1
+                    rootMargin: '400px 100px', // 提前400px开始加载
+                    threshold: 0.01
                 };
                 
                 this.observer = new IntersectionObserver((entries) => {
@@ -1365,7 +1392,7 @@
                         if (entry.isIntersecting) {
                             const element = entry.target;
                             
-                            if (element.tagName === 'IMG') {
+                            if (element.tagName === 'IMG' && !element.classList.contains('lazy-loaded')) {
                                 this.loadImage(element);
                             } else if (element.tagName === 'VIDEO') {
                                 this.loadVideo(element);
@@ -1376,8 +1403,12 @@
                     });
                 }, options);
                 
-                // 观察所有媒体元素
-                this.images.forEach((img) => this.observer.observe(img));
+                // 只观察未加载的图片和所有视频
+                this.images.forEach((img) => {
+                    if (!img.classList.contains('lazy-loaded')) {
+                        this.observer.observe(img);
+                    }
+                });
                 this.videos.forEach((video) => this.observer.observe(video));
             }
             
@@ -1390,6 +1421,8 @@
                 }
                 
                 img.src = src;
+                img.removeAttribute('data-src');
+                img.removeAttribute('data-srcset');
                 
                 img.onload = () => {
                     img.classList.add('lazy-loaded');
@@ -1411,12 +1444,10 @@
                 video.removeAttribute('data-src');
                 video.removeAttribute('data-type');
                 
-                // 只有在需要播放时才加载视频
                 video.load();
                 console.log(`[LazyLoader] Loaded video: ${src}`);
             }
             
-            // 手动加载指定元素
             loadElement(element) {
                 if (element.tagName === 'IMG' && element.dataset.src) {
                     this.loadImage(element);
