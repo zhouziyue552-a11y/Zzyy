@@ -664,6 +664,24 @@
         .account-tag { font-size: 0.9rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; }
 
         /* === 移动端响应式优化 === */
+        
+        /* 触摸优化 */
+        .touch-target {
+            min-height: 44px;
+            min-width: 44px;
+            cursor: pointer;
+        }
+        
+        /* 移动端按钮样式 */
+        .mobile-btn {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 8px;
+            outline: none;
+            -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+        }
+        
         @media (max-width: 1024px) {
             .page-wrapper { padding: 120px 15px 0; gap: 40px; }
             .content-blocks-container { padding: 0 15px; }
@@ -826,6 +844,50 @@
             .glitch-title { font-size: 2rem; letter-spacing: 2px; }
             .premium-text { font-size: 1rem; }
             .platform-link-btn { padding: 10px 22px; font-size: 0.85rem; }
+            
+            /* 基础按钮响应式样式 */
+            .card-action-text {
+                padding: 12px 20px;
+                border-radius: 8px;
+                font-size: 0.85rem;
+            }
+            
+            /* 基础文本响应式样式 */
+            .header-intro-text {
+                line-height: 1.6;
+                letter-spacing: 0.5px;
+            }
+        }
+        
+        /* === 移动端额外优化 === */
+        @media (max-width: 375px) {
+            html { font-size: 14px; }
+            
+            .new-header-block { padding: 20px 15px; }
+            .display-name { font-size: 1.8rem; }
+            .display-motto { font-size: 1rem; }
+            .avatar-wrap { width: 110px; height: 110px; }
+            
+            .icon-pendant { width: 50px; height: 50px; }
+            .icon-pendant i { font-size: 1.3rem; }
+            .icon-pendant span { font-size: 0.6rem; }
+            
+            .section-block { padding: 30px 15px; }
+            
+            .resume-btn-container { width: 140px; height: 140px; }
+            .resume-push-btn { width: 100px; height: 100px; }
+            .resume-push-btn span { font-size: 1rem; }
+        }
+        
+        /* 横屏模式优化 */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .page-wrapper { padding-top: 100px; }
+            .new-header-block { padding: 20px 25px; }
+            .header-main-content { flex-direction: row; }
+            .avatar-wrap { width: 120px; height: 120px; }
+            .display-name { font-size: 2.5rem; }
+            .hooks-container { margin-top: 20px; }
+            .icon-pendant { width: 55px; height: 55px; }
         }
 
         /* === 懒加载样式 === */
